@@ -1,3 +1,5 @@
+require "test_helper"
+
 class VisitorFlowTest <ActionDispatch::IntegrationTest
 
 
@@ -26,7 +28,6 @@ class VisitorFlowTest <ActionDispatch::IntegrationTest
       click_on "Create Account"
     end
     assert_equal 0, user_count
-    assert_equal new_user_path, current_path
-
+    assert users_path, current_path
   end
 end

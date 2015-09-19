@@ -7,7 +7,8 @@ class SessionsController < ApplicationController
     @user = User.find_by(username: params[:session][:username])
     if @user && @user.authenticate(params[:session][:password])
       session[:user_id] = @user.id
-      redirect_to @user
+      flash[:success] = "Welcome, #{current_user.username}!"
+      redirect_to ideas_path
     else
       flash.now[:errors] = "Invalid login"
       render :new

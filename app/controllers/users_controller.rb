@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
 
-  def index
-  end
   def new
     @user = User.new
   end
@@ -12,13 +10,11 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to @user
     else
-      flash.now[:invalid] = "Please enter a Username and Password"
-      redirect_to new_user_path
+      flash.now[:errors] = @user.errors.full_messages.join(", ")
+      render :new
     end
   end
 
-  def show
-  end
   private
 
   def user_params

@@ -1,0 +1,20 @@
+<h1>ideas inde</h1>
+<%= link_to "Add an Idea",  new_idea_path %>
+
+ <table class="table">
+ <tr>
+    <th>Name</th>
+    <th>--</th>
+    <th>--</th>
+    <th>--</th>
+  </tr>
+  <% @ideas.each do |idea| %>
+    <tr>
+      <td><%= link_to idea.name, idea_path(idea) %></td>
+      <td>
+        <%= link_to "Edit", edit_idea_path(idea) %> | 
+        <%= link_to "Destroy", idea_path(idea), method: :delete %>
+      </td>
+    </tr>
+ <% end %>
+</table>
