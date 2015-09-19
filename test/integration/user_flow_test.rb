@@ -51,4 +51,44 @@ class UserFlowTest <ActionDispatch::IntegrationTest
     click_button "Create Idea"
     assert page.has_content?("More Gnarly MTB rides!")
   end
+
+  test 'a user can can update an idea' do
+    user = User.create(username: "rachel", password: "password")
+
+    visit login_path
+    fill_in "Username", with: user.username
+    fill_in "Password", with: "password"
+    click_button "Login"
+
+    visit ideas_path
+    click_link "Add an Idea"
+    fill_in "Name", with: "More Gnarly MTB rides!"
+    click_button "Create Idea"
+    assert page.has_content?("More Gnarly MTB rides!")
+
+    click_link "Edit"
+    fill_in "idea[name]", with: "More Climbing!"
+    click_button "Update Idea"
+
+    assert page.has_content?("More Climbing!")
+    assert ideas_path, current_path
+  end
+
+  test 'a user can delete an idea' do
+    user = User.create(username: "rachel", password: "password")
+
+    visit login_path
+    fill_in "Username", with: user.username
+    fill_in "Password", with: "password"
+    click_button "Login"
+
+    visit ideas_path
+    click_link "Add an Idea"
+    fill_in "Name", with: "More Gnarly MTB rides!"
+    click_button "Create Idea"
+    assert page.has_content?("More Gnarly MTB rides!")
+
+    click_link "Delete"
+    refute page.has_content?("More Gnarly MTB rides!")
+  end
 end
