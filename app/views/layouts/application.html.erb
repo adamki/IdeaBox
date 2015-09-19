@@ -17,22 +17,23 @@
 </head>
 
 <body>
- <div class="container">
+  <div class="container">
+    <div class="page-header">
+      <h1>Ideabox <small>a place for ideas.</small></h1>
+      <% if current_user %>
+        Welcome, <%= current_user.username %>.
+        <%= link_to "Logout", logout_path, method: :delete %>
+      <% else %>
+        <%= link_to "Login", login_path %>
+        <%= link_to "Create Account", new_user_path %>
+      <% end %>
 
-<div class="page-header">
-  <h1>Ideabox <small>a place for ideas.</small></h1>
-</div>
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      <% end %>
+    </div>
 
-  <% if current_user %>
-    Welcome, <%= current_user.username %>.
-    <%= link_to "Logout", logout_path, method: :delete %>
-  <% else %>
-    <%= link_to "Login", login_path %>
-  <% end %>
-  <% flash.each do |name, msg| %>
-    <%= content_tag :div, msg, :id => "flash_#{name}" %>
-  <% end %>
-  <%= yield %>
- </div>
+    <%= yield %>
+  </div>
 </body>
 </html>
