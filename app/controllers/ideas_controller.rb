@@ -9,14 +9,20 @@ class IdeasController < ApplicationController
   end
 
   def create
-    @idea = Idea.new
+    @idea = current_user.ideas.new(idea_params)
     if @idea.save
-      raise "WOIOT!"
-      redirect_to :ideas_path
+      redirect_to ideas_path
     else
       raise "HELL!"
       redirect_to ideas_path
     end
 
   end
+
+  private
+
+  def idea_params
+    params.require(:idea).permit(:name)
+  end
+
 end
