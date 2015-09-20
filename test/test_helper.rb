@@ -8,7 +8,9 @@ require 'launchy'
 require 'mocha/mini_test'
 require 'capybara/rails'
 require 'minitest/pride'
+require 'simplecov'
 
+SimpleCov.start
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all

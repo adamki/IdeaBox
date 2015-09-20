@@ -1,1 +1,16 @@
 <h1>All Categories</h1>
+<%= link_to "Add a new Category",  new_admin_category_path %>
+ <table class="table">
+ <tr>
+   <th>Name</th>
+   <th>Action</th>
+ </tr>
+   <% @categories.each do |category| %>
+ <td><%= link_to category.name, edit_admin_category_path(category) %></td>
+ <td>
+   <%= link_to "Edit", edit_admin_category_path(category) %> | 
+   <%= link_to "Delete", admin_category_path(category), method: :delete %>
+ </td>
+ </tr>
+ <% end %>
+</table>

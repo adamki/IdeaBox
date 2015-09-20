@@ -95,5 +95,4 @@ class UserFlowTest <ActionDispatch::IntegrationTest
     refute page.has_content?("More Gnarly MTB rides!")
   end
 
-  
 end

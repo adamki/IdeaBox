@@ -48,5 +48,5 @@ end
 group :test do
   gem 'database_cleaner'
   gem 'minitest-rails-capybara'
-  gem 'mocha'
+  gem 'simplecov', :require => false, :group => :test
 end

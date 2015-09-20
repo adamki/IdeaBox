@@ -39,8 +39,8 @@ class IdeasController < ApplicationController
     @idea = current_user.ideas.find_by(params[:id])
     @idea.delete
     redirect_to ideas_path
-
   end
+
   private
 
   def idea_params
