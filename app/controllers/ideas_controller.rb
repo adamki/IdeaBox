@@ -1,11 +1,11 @@
 class IdeasController < ApplicationController
 
-  def index
-    @ideas = current_user.ideas.all
-  end
-
   def new
     @idea = Idea.new
+  end
+
+  def index
+    @ideas = current_user.ideas.all
   end
 
   def create
@@ -43,8 +43,8 @@ class IdeasController < ApplicationController
 
   private
 
-  def idea_params
-    params.require(:idea).permit(:name, :category_id)
-  end
+    def idea_params
+      params.require(:idea).permit(:name, :category_id)
+    end
 
 end

@@ -1,5 +1,9 @@
 class Admin::CategoriesController < Admin::BaseController
 
+  def new
+    @category = Category.new
+  end
+
   def index
     @categories = Category.all
   end
@@ -12,10 +16,6 @@ class Admin::CategoriesController < Admin::BaseController
       flash[:problem] = "Please submit a Category"
       redirect_to new_admin_category_path
     end
-  end
-
-  def new
-    @category = Category.new
   end
 
   def edit
@@ -34,13 +34,13 @@ class Admin::CategoriesController < Admin::BaseController
   def destroy
     @category = Category.find_by(params[:id])
     @category.delete
-    redirect_to admin_categories_path 
+    redirect_to admin_categories_path
   end
 
   private
 
-  def category_params
-    params.require(:category).permit(:name)
-  end
+    def category_params
+      params.require(:category).permit(:name)
+    end
 
 end
