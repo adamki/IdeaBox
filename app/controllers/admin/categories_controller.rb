@@ -22,10 +22,6 @@ class Admin::CategoriesController < Admin::BaseController
     @category = Category.find(params[:id])
   end
 
-  def show
-    @category = Category.find_by(params[:id])
-  end
-
   def update
     @category = Category.find_by(params[:id])
     if @category.update(category_params)
