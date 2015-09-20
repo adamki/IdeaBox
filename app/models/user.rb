@@ -4,4 +4,5 @@ class User < ActiveRecord::Base
 
   validates :username, :password, presence: :true
 
+  enum role: %w(default admin)
 end

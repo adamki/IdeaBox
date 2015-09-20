@@ -1,0 +1,15 @@
+<%= form_for @user do |f| %>
+  <%= f.label :username %>
+  <%= f.text_field :username %><br>
+
+  <%= f.label :password %>
+  <%= f.text_field :password %><br>
+
+  <%#= f.label :category %>
+  <%#= f.collection_select(:category_id, Category.all, :id, :name) %><br>
+
+  <%#= f.label :image %>
+  <%#= f.collection_select(:image_ids, Image.all, :id, :name, {}, {:multiple => true}) %>
+
+  <%= f.submit 'Create Account'%>
+<% end %>

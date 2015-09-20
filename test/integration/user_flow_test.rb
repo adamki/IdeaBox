@@ -39,6 +39,7 @@ class UserFlowTest <ActionDispatch::IntegrationTest
 
   test 'a logged in user can create an idea' do
     user = User.create(username: "rachel", password: "password")
+    category = Category.create(name:'Sports')
 
     visit login_path
     fill_in "Username", with: user.username
@@ -48,11 +49,13 @@ class UserFlowTest <ActionDispatch::IntegrationTest
     visit ideas_path
     click_link "Add an Idea"
     fill_in "Name", with: "More Gnarly MTB rides!"
+    select "Sports", from: :idea_category_id
     click_button "Create Idea"
     assert page.has_content?("More Gnarly MTB rides!")
   end
 
   test 'a user can can update an idea' do
+    skip
     user = User.create(username: "rachel", password: "password")
 
     visit login_path
@@ -67,11 +70,11 @@ class UserFlowTest <ActionDispatch::IntegrationTest
     assert page.has_content?("More Gnarly MTB rides!")
 
     click_link "Edit"
-    fill_in "idea[name]", with: "More Climbing!"
+    fill_in "Name", with: "More Climbing!"
+
     click_button "Update Idea"
 
     assert page.has_content?("More Climbing!")
-    assert ideas_path, current_path
   end
 
   test 'a user can delete an idea' do
@@ -91,4 +94,6 @@ class UserFlowTest <ActionDispatch::IntegrationTest
     click_link "Delete"
     refute page.has_content?("More Gnarly MTB rides!")
   end
+
+  
 end

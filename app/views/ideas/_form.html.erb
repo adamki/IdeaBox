@@ -1,0 +1,12 @@
+<%= form_for @idea do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br>
+
+  <%= f.label :category %>
+  <%= f.collection_select(:category_id, Category.all, :id, :name) %><br>
+
+  <%#= f.label :image %>
+  <%#= f.collection_select(:image_ids, Image.all, :id, :name, {}, {:multiple => true}) %>
+
+  <%= f.submit %>
+<% end %>
