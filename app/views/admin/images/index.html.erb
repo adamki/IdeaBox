@@ -1,0 +1,18 @@
+<h1>All Images</h1>
+<%= link_to "Add an Image",  new_admin_image_path %>
+ <table class="table">
+ <tr>
+   <th>Name</th>
+   <th>URL</th>
+   <th>Action</th>
+ </tr>
+   <% @images.each do |image| %>
+ <td><%= link_to image.name, edit_admin_image_path(image) %></td>
+ <td><%= image.url %></td>
+ <td>
+   <%= link_to "Edit", edit_admin_image_path(image) %> |
+   <%= link_to "Delete", admin_image_path(image), method: :delete %>
+ </td>
+ </tr>
+ <% end %>
+</table>
